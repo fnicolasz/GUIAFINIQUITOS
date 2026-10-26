@@ -1,0 +1,1300 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Guía interactiva de finiquitos (EA2, PAA1101 Duoc UC): causales, vacaciones proporcionales, IAS, mes de aviso, descuentos, calculadora paso a paso, caso resuelto, Excel y quiz.">
+<title>Guía Finiquitos EA2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Reset básico para la versión independiente */
+:root{color-scheme:light}
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+
+/* Layout: carpeta de estudio en una columna — hojas blancas sobre gris azulado, cifras en mono como una liquidación, subrayador amarillo en lo que entra en la prueba, timbre de ministro de fe como único adorno */
+:root{
+  --paper:#edf1f4; --sheet:#ffffff; --ink:#142030; --ink2:#4c5a69; --rule:#d3dbe3;
+  --accent:#2142a0; --accent-soft:#e4eaf9; --on-accent:#ffffff;
+  --hl:rgba(255,210,40,.55);
+  --ok:#16704a; --ok-soft:#e0f1e8; --bad:#ad2419; --bad-soft:#fae5e2; --warn:#855500; --warn-soft:#fbeed0; --we:#e3e8ee;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0e131a; --sheet:#151c25; --ink:#e7ecf2; --ink2:#9da9b6; --rule:#29333f;
+    --accent:#93acff; --accent-soft:#1c294a; --on-accent:#0e131a;
+    --hl:rgba(255,206,40,.30);
+    --ok:#62d29d; --ok-soft:#11301f; --bad:#ff8f84; --bad-soft:#3a1713; --warn:#f0c062; --warn-soft:#33270d; --we:#1e2630;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0e131a; --sheet:#151c25; --ink:#e7ecf2; --ink2:#9da9b6; --rule:#29333f;
+  --accent:#93acff; --accent-soft:#1c294a; --on-accent:#0e131a;
+  --hl:rgba(255,206,40,.30);
+  --ok:#62d29d; --ok-soft:#11301f; --bad:#ff8f84; --bad-soft:#3a1713; --warn:#f0c062; --warn-soft:#33270d; --we:#1e2630;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+body{background:var(--paper);color:var(--ink);font:16px/1.58 var(--body);-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+a{color:var(--accent)}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h2{font-size:clamp(1.55rem,5.2vw,2.15rem);font-weight:800;font-stretch:112%;letter-spacing:-.01em}
+h3{font-size:1.12rem;font-weight:700;font-stretch:104%;margin-top:4px}
+p{margin:0}
+.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+mark{background:linear-gradient(transparent 52%,var(--hl) 52%);color:inherit;padding:0 .08em}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+/* nav */
+.topnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.topnav-in{max-width:812px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.topnav-in::-webkit-scrollbar{display:none}
+.topnav a{flex:none;text-decoration:none;color:var(--ink2);font:600 13px/1 var(--display);font-stretch:96%;padding:8px 12px;border-radius:999px;border:1px solid var(--rule);background:var(--sheet)}
+.topnav a.on{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+
+.wrap{max-width:812px;margin:0 auto;display:flex;flex-direction:column;gap:60px;padding-block:22px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{display:flex;flex-direction:column;gap:16px;min-width:0}
+.kicker{font:700 12px/1.2 var(--display);font-stretch:110%;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.lead{font-size:1.06rem;color:var(--ink2);max-width:64ch}
+.prose{display:flex;flex-direction:column;gap:12px;max-width:66ch}
+.muted{color:var(--ink2)}
+.small{font-size:.88rem}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr auto;gap:12px 18px;align-items:start}
+.hero h1{font-size:clamp(2.3rem,9vw,3.6rem);font-weight:900;font-stretch:118%;letter-spacing:-.02em}
+.hero .lead{grid-column:1/-1}
+.stamp{width:96px;height:96px;border:3px double var(--accent);border-radius:50%;transform:rotate(-13deg);color:var(--accent);display:grid;place-items:center;text-align:center;font:800 9.5px/1.25 var(--display);font-stretch:112%;letter-spacing:.08em;text-transform:uppercase;padding:10px;opacity:.9;margin-top:6px}
+.stamp b{display:block;font-size:15px;letter-spacing:.02em}
+@media (max-width:420px){.stamp{width:78px;height:78px;font-size:8px;padding:6px}.stamp b{font-size:12px}}
+
+.sheet{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:18px;min-width:0}
+.formula{font-family:var(--mono);font-size:clamp(.86rem,3.3vw,1rem);line-height:1.7;overflow-x:auto}
+.formula .eq{display:block;font-weight:600}
+.formula .op{color:var(--accent);font-weight:600}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.note{border-left:3px solid var(--warn);background:var(--warn-soft);padding:12px 14px;border-radius:0 10px 10px 0;font-size:.95rem}
+.note.ok{border-color:var(--ok);background:var(--ok-soft)}
+.note.info{border-color:var(--accent);background:var(--accent-soft)}
+.note b{font-weight:700}
+ul.clean,ol.clean{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
+
+/* pills */
+.pill{display:inline-flex;align-items:center;gap:6px;font:600 13px/1 var(--display);padding:6px 10px;border-radius:999px;border:1px solid var(--rule);background:var(--sheet);white-space:nowrap}
+.pill.yes{background:var(--ok-soft);border-color:transparent;color:var(--ok)}
+.pill.no{background:var(--bad-soft);border-color:transparent;color:var(--bad)}
+.pill.maybe{background:var(--warn-soft);border-color:transparent;color:var(--warn)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+
+/* tables */
+.tbl{overflow-x:auto;border:1px solid var(--rule);border-radius:12px;background:var(--sheet)}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:700 12px/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);background:color-mix(in srgb,var(--paper) 55%,var(--sheet))}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.yes-t{color:var(--ok);font-weight:700}
+.no-t{color:var(--bad);font-weight:700}
+
+/* buttons */
+button{font:inherit;color:inherit}
+.btn{border:1px solid var(--rule);background:var(--sheet);border-radius:10px;padding:10px 14px;font:600 14px/1.1 var(--display);cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn.small{padding:7px 10px;font-size:13px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{border:1px solid var(--rule);background:var(--sheet);border-radius:999px;padding:8px 12px;font:600 13px/1.1 var(--display);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+
+/* forms */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field label{font:600 12.5px/1.2 var(--display);color:var(--ink2);letter-spacing:.02em}
+.field input,.field select,.field textarea{width:100%;min-width:0;font:15px/1.3 var(--mono);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:9px 10px}
+.field textarea{font-size:13px;min-height:120px}
+.field .hint{font-size:12px;color:var(--ink2)}
+details.group{border:1px solid var(--rule);border-radius:12px;background:var(--sheet)}
+details.group>summary{cursor:pointer;list-style:none;padding:14px 16px;font:700 15px/1.2 var(--display);font-stretch:104%;display:flex;justify-content:space-between;gap:10px}
+details.group>summary::-webkit-details-marker{display:none}
+details.group>summary::after{content:"+";color:var(--accent);font-size:18px;line-height:1}
+details.group[open]>summary::after{content:"–"}
+details.group .gbody{padding:0 16px 16px;display:flex;flex-direction:column;gap:12px}
+
+/* finiquito document */
+.doc{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px}
+.doc-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.doc-h strong{font:900 18px/1 var(--display);font-stretch:118%;letter-spacing:.08em}
+.doc-meta{font-size:.88rem;color:var(--ink2)}
+.doc-sec{font:700 11.5px/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin-top:6px}
+.dl{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:baseline;padding:7px 0;border-bottom:1px dotted var(--rule)}
+.dl .lbl{min-width:0}
+.dl .sub{grid-column:1/-1;font-size:12.5px;color:var(--ink2)}
+.dl .amt{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.dl.na .amt{color:var(--ink2);font-weight:400}
+.dl.neg .amt{color:var(--bad)}
+.doc-total{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;border-top:3px double var(--ink);padding-top:10px;margin-top:4px}
+.doc-total span{font:800 15px/1.2 var(--display);letter-spacing:.06em;text-transform:uppercase}
+.doc-total .amt{font:600 clamp(1.25rem,5vw,1.6rem)/1 var(--mono);font-variant-numeric:tabular-nums}
+
+/* steps */
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:10px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+ol.steps li::before{content:counter(s);font:700 13px/26px var(--mono);text-align:center;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent)}
+ol.steps li>div{min-width:0}
+ol.steps .calc{font-family:var(--mono);font-size:.9rem;color:var(--ink2);display:block;overflow-wrap:anywhere}
+
+/* calendar */
+.cal{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.cal-m{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:12px}
+.cal-t{font:700 13px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-g span{font:500 12px/1 var(--mono);text-align:center;padding:7px 0;border-radius:6px;color:var(--ink2)}
+.cal-g .cal-h{font:700 10.5px/1 var(--display);color:var(--ink2);padding:4px 0}
+.cal-g .is-hab{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.cal-g .is-partial{background:linear-gradient(90deg,var(--accent-soft) 50%,transparent 50%);color:var(--accent);font-weight:600;box-shadow:inset 0 0 0 1px var(--accent)}
+.cal-g .is-we{background:var(--we);color:var(--ink);font-weight:600}
+.cal-g .is-fest{background:var(--warn-soft);color:var(--warn);font-weight:700}
+.cal-g .is-term{box-shadow:inset 0 0 0 2px var(--bad);color:var(--bad);font-weight:700}
+.cal-g .is-festout{text-decoration:underline dotted}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12.5px;color:var(--ink2)}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:6px}
+
+/* classifier */
+.cls-row{display:grid;grid-template-columns:1fr auto auto;gap:8px 10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--rule)}
+.cls-row:last-child{border-bottom:0}
+.cls-row .why{grid-column:1/-1;font-size:13px;color:var(--ink2)}
+.yn{display:flex;border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.yn button{border:0;background:var(--sheet);padding:7px 9px;font:600 12px/1 var(--display);cursor:pointer;min-width:34px}
+.yn button+button{border-left:1px solid var(--rule)}
+.yn button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.yn.right{box-shadow:0 0 0 2px var(--ok)}
+.yn.wrong{box-shadow:0 0 0 2px var(--bad)}
+.cls-head{display:grid;grid-template-columns:1fr auto auto;gap:10px;font:700 11px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.cls-head span:nth-child(2),.cls-head span:nth-child(3){width:78px;text-align:center}
+.cls-row .yn{width:78px}
+.cls-row .yn button{flex:1}
+
+/* quiz */
+.q{display:flex;flex-direction:column;gap:10px}
+.q-n{font:700 12px/1 var(--mono);color:var(--accent)}
+.q-p{font-weight:700}
+.q-opts{display:flex;flex-direction:column;gap:6px}
+.q-opts button{text-align:left;border:1px solid var(--rule);background:var(--paper);border-radius:10px;padding:10px 12px;cursor:pointer;font-size:15px}
+.q-opts button.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:700}
+.q-opts button.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.q-opts button:disabled{cursor:default}
+.q-why{font-size:14px;color:var(--ink2)}
+.score{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.score b{font:700 1.4rem/1 var(--mono)}
+
+/* checklist */
+.check{display:flex;flex-direction:column}
+.check label{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:10px 0;border-bottom:1px dotted var(--rule);cursor:pointer}
+.check label:last-child{border-bottom:0}
+.check input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent)}
+.bar{height:8px;border-radius:99px;background:var(--we);overflow:hidden}
+.bar>div{height:100%;background:var(--accent);width:0;transition:width .3s}
+
+/* code */
+.code{position:relative;background:var(--paper);border:1px solid var(--rule);border-radius:10px}
+.code pre{margin:0;padding:12px 14px;overflow-x:auto;font:13px/1.65 var(--mono)}
+.code .btn{position:absolute;top:8px;right:8px}
+.xl{display:grid;grid-template-columns:auto 1fr;gap:0}
+.xl-row{display:contents}
+.xl-row>*{padding:8px 10px;border-bottom:1px solid var(--rule);font-size:13.5px;min-width:0}
+.xl-row .cell{font:600 12.5px/1.4 var(--mono);color:var(--accent);background:color-mix(in srgb,var(--paper) 55%,var(--sheet))}
+.xl-row code{font:12.5px/1.5 var(--mono);overflow-wrap:anywhere;display:block}
+.xl-row small{display:block;color:var(--ink2);font-size:12px;margin-top:2px}
+
+.err{color:var(--bad);font-weight:700}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.sum-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.sum-cards .sc{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:12px}
+.sc .k{font:700 11px/1.2 var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.sc .v{font:600 1.15rem/1.3 var(--mono);font-variant-numeric:tabular-nums;margin-top:4px}
+footer{font-size:.88rem;color:var(--ink2);display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--rule);padding-top:18px}
+footer ul{margin:0;padding-left:1.1em;display:flex;flex-direction:column;gap:4px}
+</style>
+</head>
+<body>
+<nav class="topnav" aria-label="Secciones">
+  <div class="topnav-in" id="nav">
+    <a href="#finiquito">Qué es</a>
+    <a href="#causales">1 · Causal</a>
+    <a href="#vacaciones">2 · Vacaciones</a>
+    <a href="#ias">3 · IAS</a>
+    <a href="#aviso">4 · Aviso</a>
+    <a href="#descuentos">5 · Descuentos</a>
+    <a href="#practica">Practicar</a>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#caso">Caso EA2</a>
+    <a href="#excel">En Excel</a>
+    <a href="#ruta">Ruta al 7</a>
+    <a href="#quiz">Quiz</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <header class="hero">
+    <div>
+      <div class="kicker">PAA1101 · Taller de Administración del Personal · EA2</div>
+      <h1>Finiquitos</h1>
+    </div>
+    <div class="stamp" aria-hidden="true"><span>Ministro de fe<b>Art. 177</b>10 días hábiles</span></div>
+    <p class="lead">Todo lo que entra en la formativa y en el Parcial 2: causales, vacaciones proporcionales, años de servicio, mes de aviso y descuentos. Con calculadoras que muestran el desarrollo paso a paso, el caso de Victoria y Claudio resuelto y las fórmulas para armarlo en Excel.</p>
+  </header>
+
+  <!-- QUÉ ES -->
+  <section id="finiquito" aria-labelledby="h-fin">
+    <div class="kicker">Antes de calcular</div>
+    <h2 id="h-fin">Qué es un finiquito</h2>
+    <div class="prose">
+      <p>Es el documento con que trabajador y empleador dejan constancia del término de la relación laboral. Debe indicar la <b>causal</b> y todos los montos que se pagan y descuentan, y se ratifica ante un <b>ministro de fe</b> (notario, inspector del trabajo, oficial del Registro Civil o presidente del sindicato) o se firma electrónicamente en el portal de la Dirección del Trabajo.</p>
+      <p>Según el <b>art. 177</b> del Código del Trabajo, el finiquito se debe otorgar y poner el pago a disposición del trabajador <mark>dentro de 10 días hábiles</mark> desde la separación.</p>
+    </div>
+    <div class="sheet formula" aria-label="Fórmula del finiquito">
+      <span class="eq">TOTAL FINIQUITO =</span>
+      <span>&nbsp;&nbsp;Feriado (vacaciones pendientes + proporcionales)</span><br>
+      <span class="op">+</span> IAS (indemnización por años de servicio)<br>
+      <span class="op">+</span> Mes de aviso (indemnización sustitutiva)<br>
+      <span class="op">−</span> Descuentos (aporte AFC, préstamos, anticipos)
+    </div>
+    <p class="muted small">La formativa evalúa exactamente estos cinco bloques: feriado, base IAS, base mes de aviso, descuentos y total. Por eso la guía sigue ese orden.</p>
+  </section>
+
+  <!-- CAUSALES -->
+  <section id="causales" aria-labelledby="h-cau">
+    <div class="kicker">Paso 1</div>
+    <h2 id="h-cau">La causal decide qué se paga</h2>
+    <p class="lead">Elige una causal y mira qué indemnizaciones corresponden. Este es el primer punto que revisa el corrector: si la causal está mal leída, todo lo demás sobra o falta.</p>
+    <div class="seg" id="cau-seg" role="group" aria-label="Causales"></div>
+    <div class="sheet" id="cau-out" aria-live="polite"></div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Causal</th><th>Feriado</th><th>IAS</th><th>Mes de aviso</th></tr></thead>
+        <tbody>
+          <tr><td><b>Art. 159</b> — mutuo acuerdo, renuncia, muerte, vencimiento del plazo, fin de obra, caso fortuito</td><td class="yes-t">Sí</td><td class="no-t">No</td><td class="no-t">No</td></tr>
+          <tr><td><b>Art. 160</b> — conductas graves (falta de probidad, acoso, vías de hecho, injurias, ausencias, abandono, imprudencias, perjuicio material, incumplimiento grave)</td><td class="yes-t">Sí</td><td class="no-t">No</td><td class="no-t">No</td></tr>
+          <tr><td><b>Art. 161</b> — necesidades de la empresa, <b>con</b> aviso de 30 días</td><td class="yes-t">Sí</td><td class="yes-t">Sí*</td><td class="no-t">No</td></tr>
+          <tr><td><b>Art. 161</b> — necesidades de la empresa, <b>sin</b> aviso</td><td class="yes-t">Sí</td><td class="yes-t">Sí*</td><td class="yes-t">Sí</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small">* Solo si el contrato duró 1 año o más. El feriado se paga siempre, cualquiera sea la causal: es un derecho ya ganado.</p>
+    <div class="note info">En el caso, “Artículo 159 (Inciso 2°)” es la <b>renuncia</b> (en la ley es el número 2 del art. 159) y “Artículo 161 (Inciso 1°)” son las <b>necesidades de la empresa</b>.</div>
+  </section>
+
+  <!-- VACACIONES -->
+  <section id="vacaciones" aria-labelledby="h-vac">
+    <div class="kicker">Paso 2 · IL 1.3</div>
+    <h2 id="h-vac">Feriado: vacaciones pendientes y proporcionales</h2>
+    <div class="prose">
+      <p>Por el <b>art. 73</b>, si el trabajador se va sin haber usado su feriado, se le paga en dinero. Son dos partes:</p>
+      <ul class="clean">
+        <li><b>Pendientes:</b> días de años completos que no alcanzó a tomar (en el caso: Victoria 13, Claudio 4).</li>
+        <li><b>Proporcionales:</b> lo ganado desde la última anualidad (último “aniversario” del contrato) hasta el término.</li>
+      </ul>
+    </div>
+
+    <div class="grid2">
+      <div class="sheet formula">
+        <span class="eq">Factor por mes</span>
+        (15 + progresivos) ÷ 12<br>
+        <span class="muted">15 ÷ 12 = <mark>1,25</mark></span>
+      </div>
+      <div class="sheet formula">
+        <span class="eq">Factor por día</span>
+        factor mes ÷ 30<br>
+        <span class="muted">1,25 ÷ 30 = <mark>0,041667</mark></span>
+      </div>
+    </div>
+
+    <h3>El procedimiento (letras A a E del PPT)</h3>
+    <ol class="steps">
+      <li><div><b>Días por mes y por día.</b> Divide el feriado anual (incluidos los progresivos) por 12, y ese resultado por 30.</div></li>
+      <li><div><b>Proporcional.</b> Multiplica el factor mes por los meses y el factor día por los días trabajados desde la última anualidad. Suma los pendientes. Eso da los <b>días hábiles</b> a indemnizar.</div></li>
+      <li><div><b>Cuenta desde el día siguiente al término</b>, solo de lunes a viernes no festivos, hasta completar los días hábiles.</div></li>
+      <li><div><b>Agrega los inhábiles</b> (sábados, domingos y festivos) que quedaron dentro de ese conteo. Hábiles + inhábiles = <mark>días a pagar</mark>.</div></li>
+      <li><div><b>Multiplica</b> los días a pagar por el valor diario: base ÷ 30.</div></li>
+    </ol>
+
+    <h3>Ejemplo del PPT: 8 meses y 18 días, término el 25-07-2023</h3>
+    <div class="sheet">
+      <ol class="steps" id="ppt-steps"></ol>
+    </div>
+    <div class="cal" id="ppt-cal"></div>
+    <div class="legend" id="legend-1"></div>
+
+    <h3>Base de cálculo del feriado (art. 71)</h3>
+    <div class="grid2">
+      <div class="sheet">
+        <div class="pills" style="margin-bottom:10px"><span class="pill yes">Entra</span></div>
+        <ul class="clean">
+          <li>Sueldo base</li>
+          <li>Bonos fijos y permanentes (se pagan igual todos los meses)</li>
+          <li>Promedio de lo variable de los últimos 3 meses (comisiones)</li>
+        </ul>
+      </div>
+      <div class="sheet">
+        <div class="pills" style="margin-bottom:10px"><span class="pill no">No entra</span></div>
+        <ul class="clean">
+          <li>Gratificación (no es sueldo, art. 42 letra e)</li>
+          <li>Horas extras</li>
+          <li>Aguinaldos y bonos esporádicos</li>
+          <li>Colación, movilización, viáticos, pérdida de caja, desgaste de herramientas</li>
+          <li>Asignación familiar</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sheet formula"><span class="eq">Valor día = base ÷ 30</span>Feriado $ = días a pagar × valor día</div>
+    <div class="note"><b>Progresivos.</b> El PPT dice dividir “incluidos los días de feriado progresivo”. Para Victoria: (15 + 2) ÷ 12 = 1,4167 por mes. Si tu docente los trata como días pendientes extra, la calculadora tiene esa opción.</div>
+  </section>
+
+  <!-- IAS -->
+  <section id="ias" aria-labelledby="h-ias">
+    <div class="kicker">Paso 3 · IL 1.4</div>
+    <h2 id="h-ias">Indemnización por años de servicio</h2>
+    <div class="sheet formula"><span class="eq">IAS = años computables × base mensual</span>base mensual con tope de <mark>90 UF</mark></div>
+    <div class="grid2">
+      <div class="sheet prose">
+        <h3>Tiempo (art. 163)</h3>
+        <ul class="clean">
+          <li>Solo con causal <b>art. 161</b>.</li>
+          <li>Hay que cumplir <b>1 año completo</b>. Con menos, no hay IAS.</li>
+          <li>Desde el 2° año, la <b>fracción superior a 6 meses</b> cuenta como un año más. 6 meses exactos no suman; 6 meses y 1 día sí.</li>
+          <li><b>Tope: 11 años</b> (330 días).</li>
+        </ul>
+      </div>
+      <div class="sheet prose">
+        <h3>Valor (art. 172)</h3>
+        <p>Es la última remuneración mensual: todo lo que el trabajador estaba percibiendo.</p>
+        <ul class="clean">
+          <li><span class="yes-t">Entra:</span> sueldo, bonos fijos, gratificación mensual, colación, movilización y viáticos mensuales, regalías avaluables.</li>
+          <li><span class="no-t">No entra:</span> horas extras, asignación familiar, beneficios esporádicos o de una vez al año.</li>
+          <li>Remuneración variable: promedio de los 3 últimos meses.</li>
+          <li>Tope: <b>90 UF del último día del mes anterior al pago</b>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Prueba la regla de los años</h3>
+    <div class="sheet">
+      <div class="fgrid">
+        <div class="field"><label for="t-y">Años</label><input id="t-y" type="number" min="0" inputmode="numeric" value="3"></div>
+        <div class="field"><label for="t-m">Meses</label><input id="t-m" type="number" min="0" max="11" inputmode="numeric" value="6"></div>
+        <div class="field"><label for="t-d">Días</label><input id="t-d" type="number" min="0" max="30" inputmode="numeric" value="1"></div>
+      </div>
+      <p id="t-out" style="margin-top:12px" aria-live="polite"></p>
+    </div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Antigüedad</th><th class="r">Años IAS</th><th>Por qué</th></tr></thead>
+        <tbody id="ias-ex"></tbody>
+      </table>
+    </div>
+
+    <h3>Rebaja del seguro de cesantía</h3>
+    <div class="prose">
+      <p>En contratos indefinidos el empleador cotiza 2,4% al seguro de cesantía: 1,6% va a la cuenta individual del trabajador y 0,8% al fondo solidario. Por el <b>art. 13 de la Ley 19.728</b>, cuando despide por <b>art. 161</b> puede <mark>descontar de la IAS</mark> lo aportado a la cuenta individual (el 1,6% más su rentabilidad). El 0,8% no se descuenta. El monto sale del certificado de la AFC; en el caso ya viene dado como “Seguro Cesantía (aporte empleador)”.</p>
+    </div>
+  </section>
+
+  <!-- AVISO -->
+  <section id="aviso" aria-labelledby="h-avi">
+    <div class="kicker">Paso 4</div>
+    <h2 id="h-avi">Mes de aviso (indemnización sustitutiva)</h2>
+    <div class="prose">
+      <p>Si el empleador despide por <b>art. 161</b> y <b>no avisa por escrito con 30 días de anticipación</b>, paga una indemnización igual a la última remuneración mensual.</p>
+    </div>
+    <div class="sheet formula"><span class="eq">Mes de aviso = 1 × base mensual</span>misma base que la IAS · tope 90 UF</div>
+    <div class="grid2">
+      <div class="note ok"><b>161 sin aviso:</b> se paga el mes de aviso, aunque el trabajador tenga menos de 1 año.</div>
+      <div class="note"><b>161 con aviso</b> (Claudio): no se paga. <b>Renuncia sin aviso</b> (Victoria): tampoco genera pago ni descuento.</div>
+    </div>
+  </section>
+
+  <!-- DESCUENTOS -->
+  <section id="descuentos" aria-labelledby="h-des">
+    <div class="kicker">Paso 5</div>
+    <h2 id="h-des">Descuentos del finiquito</h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Descuento</th><th>Cuándo procede</th><th>Cómo se calcula</th></tr></thead>
+        <tbody>
+          <tr><td><b>Aporte empleador AFC</b></td><td>Solo art. 161 y solo contra la IAS</td><td>El monto del certificado (no puede superar la IAS)</td></tr>
+          <tr><td><b>Préstamo de empresa</b></td><td>Si hay cuotas pendientes pactadas por escrito</td><td>N° cuotas × valor cuota</td></tr>
+          <tr><td><b>Anticipos</b></td><td>Si se adelantó dinero a cuenta del finiquito</td><td>Monto del anticipo</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><b>Dato trampa:</b> a Victoria le aparece un aporte AFC de $243.002, pero renunció. Sin IAS no hay nada contra qué imputarlo, así que <b>no se descuenta</b>.</div>
+    <div class="sheet formula"><span class="eq">TOTAL = Feriado + IAS + Mes de aviso − AFC − Préstamo − Otros</span>en pesos, sin decimales</div>
+  </section>
+
+  <!-- PRACTICA -->
+  <section id="practica" aria-labelledby="h-pra">
+    <div class="kicker">Practicar</div>
+    <h2 id="h-pra">¿Entra o no entra en la base?</h2>
+    <p class="lead">Marca Sí o No para cada haber en la base del feriado y en la base de la IAS / aviso. Después revisa.</p>
+    <div class="sheet">
+      <div class="cls-head"><span>Haber</span><span>Feriado</span><span>IAS · Aviso</span></div>
+      <div id="cls"></div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn primary" id="cls-check" type="button">Revisar</button>
+        <button class="btn" id="cls-reset" type="button">Reiniciar</button>
+        <span id="cls-score" class="mono" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALCULADORA -->
+  <section id="calculadora" aria-labelledby="h-calc">
+    <div class="kicker">Herramienta</div>
+    <h2 id="h-calc">Calculadora de finiquito</h2>
+    <p class="lead">Carga un ejemplo o escribe tus datos. Arriba ves el finiquito y más abajo el desarrollo para copiar en tu respuesta.</p>
+
+    <div class="sheet" style="display:flex;flex-direction:column;gap:12px">
+      <div class="field"><label for="preset">Cargar ejemplo</label>
+        <select id="preset">
+          <option value="victoria">Caso EA2 · Victoria Silva Valenzuela</option>
+          <option value="claudio">Caso EA2 · Claudio Soto Retamales</option>
+          <option value="ppt">Ejemplo del PPT (8 meses 18 días)</option>
+          <option value="ex1">Excel de clases · Trabajador 1</option>
+          <option value="ex2">Excel de clases · Trabajador 2</option>
+          <option value="ex3">Excel de clases · Trabajador 3</option>
+        </select>
+      </div>
+      <div class="fgrid">
+        <div class="field"><label for="p-imm">Ingreso mínimo mensual</label><input id="p-imm" type="number" inputmode="numeric" value="553553"><span class="hint">Vigente desde 01-05-2026 (Ley 21.830)</span></div>
+        <div class="field"><label for="p-uf">Valor UF para el tope</label><input id="p-uf" type="number" step="0.01" inputmode="decimal" value="41057.20"><span class="hint">UF al 30-09-2026, para pagos en octubre</span></div>
+      </div>
+      <div class="row">
+        <button class="btn small" type="button" id="imm-500">IMM $500.000 (Excel de clases)</button>
+        <button class="btn small" type="button" id="imm-now">IMM vigente $553.553</button>
+      </div>
+    </div>
+
+    <div class="doc" id="doc" aria-live="polite"></div>
+
+    <details class="group" open>
+      <summary>Datos del contrato</summary>
+      <div class="gbody">
+        <div class="field"><label for="c-nombre">Trabajador</label><input id="c-nombre" type="text"></div>
+        <div class="fgrid">
+          <div class="field"><label for="c-inicio">Fecha de contrato</label><input id="c-inicio" type="date"></div>
+          <div class="field"><label for="c-termino">Fecha de término</label><input id="c-termino" type="date"></div>
+        </div>
+        <div class="fgrid">
+          <div class="field"><label for="c-causal">Causal</label>
+            <select id="c-causal">
+              <option value="159-1">Art. 159 N°1 · Mutuo acuerdo</option>
+              <option value="159-2">Art. 159 N°2 · Renuncia</option>
+              <option value="159-3">Art. 159 N°3 · Muerte</option>
+              <option value="159-4">Art. 159 N°4 · Vencimiento del plazo</option>
+              <option value="159-5">Art. 159 N°5 · Conclusión de la obra</option>
+              <option value="159-6">Art. 159 N°6 · Caso fortuito</option>
+              <option value="160">Art. 160 · Conducta grave</option>
+              <option value="161">Art. 161 inc. 1° · Necesidades de la empresa</option>
+            </select>
+          </div>
+          <div class="field"><label for="c-aviso">Aviso previo (30 días)</label>
+            <select id="c-aviso"><option value="con">Con aviso</option><option value="sin">Sin aviso</option></select>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="group">
+      <summary>Haberes de la última liquidación</summary>
+      <div class="gbody">
+        <div class="fgrid">
+          <div class="field"><label for="h-sueldo">Sueldo base</label><input id="h-sueldo" type="number" inputmode="numeric"></div>
+          <div class="field"><label for="h-bono">Bonos fijos y permanentes</label><input id="h-bono" type="number" inputmode="numeric"></div>
+          <div class="field"><label for="h-he">Horas extras</label><input id="h-he" type="number" inputmode="numeric"></div>
+          <div class="field"><label for="h-esp">Bonos esporádicos</label><input id="h-esp" type="number" inputmode="numeric"></div>
+        </div>
+        <div class="fgrid">
+          <div class="field"><label for="h-c1">Comisión mes actual</label><input id="h-c1" type="number" inputmode="numeric"></div>
+          <div class="field"><label for="h-c2">Comisión mes 2</label><input id="h-c2" type="number" inputmode="numeric"></div>
+          <div class="field"><label for="h-c3">Comisión mes 3</label><input id="h-c3" type="number" inputmode="numeric"></div>
+        </div>
+        <div class="field"><label for="h-grat">Gratificación mensual</label>
+          <select id="h-grat">
+            <option value="tope">Tope legal: 4,75 × IMM ÷ 12</option>
+            <option value="25">25% de lo devengado, con tope</option>
+            <option value="none">No tiene</option>
+          </select>
+        </div>
+        <div class="fgrid">
+          <div class="field"><label for="h-col">Colación</label><input id="h-col" type="number" inputmode="numeric"></div>
+          <div class="field"><label for="h-mov">Movilización</label><input id="h-mov" type="number" inputmode="numeric"></div>
+          <div class="field"><label for="h-via">Viáticos mensuales</label><input id="h-via" type="number" inputmode="numeric"></div>
+          <div class="field"><label for="h-asig">Asignación familiar</label><input id="h-asig" type="number" inputmode="numeric"></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="group">
+      <summary>Vacaciones</summary>
+      <div class="gbody">
+        <div class="fgrid">
+          <div class="field"><label for="v-pend">Días pendientes (hábiles)</label><input id="v-pend" type="number" step="0.01" inputmode="decimal"></div>
+          <div class="field"><label for="v-prog">Días progresivos por año</label><input id="v-prog" type="number" inputmode="numeric"></div>
+        </div>
+        <div class="field"><label for="v-mode">Cómo usar los progresivos</label>
+          <select id="v-mode">
+            <option value="anual">Sumarlos al feriado anual: (15 + prog) ÷ 12 (método del PPT)</option>
+            <option value="saldo">Sumarlos como días pendientes extra</option>
+          </select>
+        </div>
+        <details>
+          <summary class="small" style="cursor:pointer;color:var(--accent)">Ver o editar feriados legales</summary>
+          <div class="field" style="margin-top:10px">
+            <label for="v-fest">Un feriado por línea (aaaa-mm-dd)</label>
+            <textarea id="v-fest" spellcheck="false"></textarea>
+            <span class="hint">Incluye 2023 a 2027. Los de 2027 están calculados con las reglas de traslado de la ley; confírmalos cuando salga el calendario oficial.</span>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <details class="group">
+      <summary>Descuentos</summary>
+      <div class="gbody">
+        <div class="fgrid">
+          <div class="field"><label for="d-afc">Aporte empleador AFC</label><input id="d-afc" type="number" inputmode="numeric"></div>
+          <div class="field"><label for="d-cuotas">Cuotas de préstamo pendientes</label><input id="d-cuotas" type="number" inputmode="numeric"></div>
+          <div class="field"><label for="d-cuota">Valor de cada cuota</label><input id="d-cuota" type="number" inputmode="numeric"></div>
+          <div class="field"><label for="d-otros">Otros descuentos</label><input id="d-otros" type="number" inputmode="numeric"></div>
+        </div>
+      </div>
+    </details>
+
+    <h3>Desarrollo paso a paso</h3>
+    <div class="sheet"><ol class="steps" id="steps"></ol></div>
+    <h3>Calendario del feriado</h3>
+    <div class="cal" id="cal"></div>
+    <div class="legend" id="legend-2"></div>
+  </section>
+
+  <!-- CASO -->
+  <section id="caso" aria-labelledby="h-caso">
+    <div class="kicker">Tercera parte del caso</div>
+    <h2 id="h-caso">Victoria y Claudio, resueltos</h2>
+    <p class="lead">Las fechas del caso vienen en blanco (“X”): las da tu docente. Aquí van fechas de ejemplo. Cámbialas por las oficiales y todo se recalcula.</p>
+    <div class="grid2">
+      <div class="sheet" style="display:flex;flex-direction:column;gap:10px">
+        <h3>Victoria Silva Valenzuela</h3>
+        <p class="small muted">Analista de Finanzas · Art. 159 N°2 · sin aviso</p>
+        <div class="fgrid">
+          <div class="field"><label for="cv-i">Contrato</label><input id="cv-i" type="date" value="2019-05-02"></div>
+          <div class="field"><label for="cv-t">Término</label><input id="cv-t" type="date" value="2026-10-09"></div>
+        </div>
+      </div>
+      <div class="sheet" style="display:flex;flex-direction:column;gap:10px">
+        <h3>Claudio Soto Retamales</h3>
+        <p class="small muted">Chofer de Despacho · Art. 161 inc. 1° · con aviso</p>
+        <div class="fgrid">
+          <div class="field"><label for="cc-i">Contrato</label><input id="cc-i" type="date" value="2019-01-15"></div>
+          <div class="field"><label for="cc-t">Término</label><input id="cc-t" type="date" value="2026-08-31"></div>
+        </div>
+      </div>
+    </div>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Concepto</th><th class="r">Victoria</th><th class="r">Claudio</th></tr></thead>
+        <tbody id="case-tb"></tbody>
+      </table>
+    </div>
+    <div class="row">
+      <button class="btn" type="button" data-open="victoria">Ver desarrollo de Victoria</button>
+      <button class="btn" type="button" data-open="claudio">Ver desarrollo de Claudio</button>
+    </div>
+    <h3>Cómo leer cada dato del caso</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Dato</th><th>Victoria</th><th>Claudio</th></tr></thead>
+        <tbody>
+          <tr><td>Causal</td><td>Renuncia: solo feriado</td><td>Necesidades de la empresa: feriado + IAS</td></tr>
+          <tr><td>Aviso previo</td><td>Sin aviso: no se paga ni se descuenta nada</td><td>Con aviso: no hay mes de aviso</td></tr>
+          <tr><td>Vacaciones pendientes</td><td>13 días hábiles, se suman al proporcional</td><td>4 días hábiles, se suman al proporcional</td></tr>
+          <tr><td>Progresivos</td><td>2 días: feriado anual de 17 → 17 ÷ 12</td><td>0 días: 15 ÷ 12</td></tr>
+          <tr><td>Seguro cesantía</td><td><span class="no-t">No se usa</span> (no hay IAS)</td><td><span class="yes-t">Se descuenta</span> de la IAS</td></tr>
+          <tr><td>Préstamo</td><td>2 × $24.000 = $48.000</td><td>8 × $58.500 = $468.000</td></tr>
+          <tr><td>Horas extras</td><td colspan="2">No entran en ninguna base</td></tr>
+          <tr><td>Bono fijo y permanente</td><td colspan="2">Entra en feriado y en IAS</td></tr>
+          <tr><td>Gratificación “tope legal”</td><td>No entra en feriado; no se usa (sin IAS)</td><td>Entra en IAS: 4,75 × IMM ÷ 12</td></tr>
+          <tr><td>Colación y movilización</td><td>No entran en feriado</td><td>Entran en IAS</td></tr>
+          <tr><td>Viáticos</td><td>No tiene</td><td>$110.000 mensuales: entran en IAS</td></tr>
+          <tr><td>Asignación familiar</td><td>$3.258: no entra en nada</td><td>No tiene</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- EXCEL -->
+  <section id="excel" aria-labelledby="h-xl">
+    <div class="kicker">Producto de la evaluación</div>
+    <h2 id="h-xl">Cómo armarlo en Excel</h2>
+    <p class="lead">El corrector revisa el respaldo en Excel. Usa fórmulas con referencias a celdas, nunca resultados tecleados. Excel en español usa punto y coma (;) como separador.</p>
+    <div class="note info">Crea una hoja <b>Feriados</b> con las fechas en A2:A40 y ponle el nombre <b>Feriados</b> a ese rango (Fórmulas → Asignar nombre). Así <code class="mono">DIA.LAB</code> cuenta los festivos solo.</div>
+    <h3>Datos de entrada</h3>
+    <div class="tbl"><div class="xl" id="xl-in"></div></div>
+    <h3>Fórmulas</h3>
+    <div class="tbl"><div class="xl" id="xl-f"></div></div>
+    <div class="note"><b>El truco de los inhábiles:</b> <code class="mono">DIA.LAB(término; días hábiles redondeados hacia arriba; Feriados)</code> te da la fecha del último día hábil. Los días corridos entre el término y esa fecha, menos los hábiles, son los inhábiles. Con el ejemplo del PPT: DIA.LAB(25-07-2023; 11) = 09-08-2023 → 15 corridos − 11 = 4 inhábiles.</div>
+    <p class="muted small">Si tu Excel está en inglés: SIFECHA = DATEDIF, DIA.LAB = WORKDAY, REDONDEAR.MAS = ROUNDUP, REDONDEAR = ROUND, SI = IF, Y = AND, y el separador es coma.</p>
+  </section>
+
+  <!-- RUTA AL 7 -->
+  <section id="ruta" aria-labelledby="h-ruta">
+    <div class="kicker">Para el 7,0</div>
+    <h2 id="h-ruta">Ruta al 7</h2>
+    <p class="lead">Marca cada punto cuando lo domines. Queda guardado en este navegador.</p>
+    <div class="sheet" style="display:flex;flex-direction:column;gap:12px">
+      <div class="score"><span class="muted">Avance</span><b id="ck-pct">0%</b></div>
+      <div class="bar"><div id="ck-bar"></div></div>
+      <div class="check" id="ck"></div>
+    </div>
+    <h3>Errores que bajan la nota</h3>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Error</th><th>Lo correcto</th></tr></thead>
+        <tbody>
+          <tr><td>Meter gratificación u horas extras en la base del feriado</td><td>Feriado: sueldo + fijos + promedio variable</td></tr>
+          <tr><td>Olvidar los días pendientes o los progresivos</td><td>Hábiles = pendientes + proporcional (con progresivos)</td></tr>
+          <tr><td>Contar desde el día del término</td><td>Se cuenta desde el día siguiente</td></tr>
+          <tr><td>Saltarse los festivos en día de semana (12 de octubre, 18 de septiembre…)</td><td>Se suman como inhábiles</td></tr>
+          <tr><td>Dar un año más por 6 meses exactos</td><td>La fracción debe ser superior a 6 meses</td></tr>
+          <tr><td>Pagar IAS en una renuncia o con menos de 1 año</td><td>IAS solo con art. 161 y 1 año o más</td></tr>
+          <tr><td>Pagar mes de aviso cuando sí hubo aviso</td><td>Solo 161 sin aviso</td></tr>
+          <tr><td>Descontar el seguro de cesantía en una renuncia</td><td>Solo se rebaja de la IAS por art. 161</td></tr>
+          <tr><td>Olvidar comparar con 90 UF</td><td>Base = MIN(base; 90 × UF del último día del mes anterior al pago)</td></tr>
+          <tr><td>Teclear resultados en Excel</td><td>Fórmulas con referencias, celdas etiquetadas</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" aria-labelledby="h-quiz">
+    <div class="kicker">Autoevaluación</div>
+    <h2 id="h-quiz">Quiz de finiquitos</h2>
+    <div class="sheet score"><span>Correctas: <b id="qz-score">0</b> <span class="muted">de <span id="qz-total">0</span></span></span><button class="btn small" type="button" id="qz-reset">Reiniciar y mezclar</button></div>
+    <div id="qz" style="display:flex;flex-direction:column;gap:12px"></div>
+  </section>
+
+  <footer>
+    <p><b>Fuentes y valores usados</b> · revisados el 26-10-2026</p>
+    <ul>
+      <li>Código del Trabajo, arts. 42, 67–73, 159–163, 172 y 177 — <a href="https://www.bcn.cl/leychile/navegar?idNorma=207436" target="_blank" rel="noopener">BCN Ley Chile</a></li>
+      <li>Ingreso mínimo $553.553 desde el 01-05-2026 (Ley 21.830) — <a href="https://dt.gob.cl/legislacion/1624/w3-article-129410.html" target="_blank" rel="noopener">Dirección del Trabajo, Ord. 307/28</a></li>
+      <li>UF 30-09-2026: $41.057,20 · 31-08-2026: $40.873,77 — <a href="https://www.sii.cl/valores_y_fechas/uf/uf2026.htm" target="_blank" rel="noopener">SII</a></li>
+      <li>Feriados 2026 — <a href="https://www.24horas.cl/te-sirve/feriados-2026-revisa-el-calendario-completo-para-el-proximo-ano" target="_blank" rel="noopener">24horas.cl</a></li>
+      <li>Material del curso: PPT 2.1 Vacaciones proporcionales, PPT 2.2 Indemnizaciones, Excel “cálculo de vacaciones” y Formativa EA2.</li>
+    </ul>
+    <p>Guía de estudio. Ante una diferencia de criterio, manda lo que indique tu docente.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- utilidades ---------- */
+var $ = function(s){ return document.querySelector(s); };
+var MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+var DIAS = ['dom','lun','mar','mié','jue','vie','sáb'];
+function clp(n){ return '$' + Math.round(n).toLocaleString('es-CL'); }
+function nf(n, d){ return Number(n).toLocaleString('es-CL', {minimumFractionDigits:d, maximumFractionDigits:d}); }
+function parseDate(s){ if(!s) return null; var p = s.split('-').map(Number); if(p.length!==3||!p[0]) return null; return new Date(Date.UTC(p[0], p[1]-1, p[2])); }
+function iso(d){ return d.toISOString().slice(0,10); }
+function addDays(d,n){ return new Date(d.getTime() + n*86400000); }
+function dmy(d){ return String(d.getUTCDate()).padStart(2,'0') + '-' + String(d.getUTCMonth()+1).padStart(2,'0') + '-' + d.getUTCFullYear(); }
+function dim(y,m){ return new Date(Date.UTC(y, m+1, 0)).getUTCDate(); }
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function store(k, v){ try{ if(v===undefined){ return JSON.parse(localStorage.getItem(k)); } localStorage.setItem(k, JSON.stringify(v)); }catch(e){ return null; } }
+
+/* ---------- feriados ---------- */
+var FEST_DEFAULT = [
+'2023-01-01','2023-01-02','2023-04-07','2023-04-08','2023-05-01','2023-05-21','2023-06-21','2023-06-26','2023-07-16','2023-08-15','2023-09-18','2023-09-19','2023-10-09','2023-10-27','2023-11-01','2023-12-08','2023-12-17','2023-12-25',
+'2024-01-01','2024-03-29','2024-03-30','2024-05-01','2024-05-21','2024-06-20','2024-06-29','2024-07-16','2024-08-15','2024-09-18','2024-09-19','2024-09-20','2024-10-12','2024-10-27','2024-10-31','2024-11-01','2024-12-08','2024-12-25',
+'2025-01-01','2025-04-18','2025-04-19','2025-05-01','2025-05-21','2025-06-20','2025-06-29','2025-07-16','2025-08-15','2025-09-18','2025-09-19','2025-10-12','2025-10-31','2025-11-01','2025-11-16','2025-12-08','2025-12-14','2025-12-25',
+'2026-01-01','2026-04-03','2026-04-04','2026-05-01','2026-05-21','2026-06-21','2026-06-29','2026-07-16','2026-08-15','2026-09-18','2026-09-19','2026-10-12','2026-10-31','2026-11-01','2026-12-08','2026-12-25',
+'2027-01-01','2027-03-26','2027-03-27','2027-05-01','2027-05-21','2027-06-21','2027-06-28','2027-07-16','2027-08-15','2027-09-18','2027-09-19','2027-10-11','2027-10-31','2027-11-01','2027-12-08','2027-12-25'
+];
+var festSet = new Set(FEST_DEFAULT);
+
+/* ---------- motor de cálculo ---------- */
+/* Igual que SIFECHA/DATEDIF de Excel: "Y", "YM", "MD" */
+function datedif(a, b){
+  var tm = (b.getUTCFullYear()-a.getUTCFullYear())*12 + (b.getUTCMonth()-a.getUTCMonth());
+  var d;
+  if (b.getUTCDate() >= a.getUTCDate()) d = b.getUTCDate() - a.getUTCDate();
+  else {
+    tm -= 1;
+    var pm = b.getUTCMonth()-1, py = b.getUTCFullYear();
+    if (pm < 0){ pm = 11; py -= 1; }
+    d = dim(py, pm) - a.getUTCDate() + b.getUTCDate();
+    if (d < 0) d = 0;
+  }
+  if (tm < 0) return {y:0, m:0, d:0};
+  return {y: Math.floor(tm/12), m: tm % 12, d: d};
+}
+function iasYears(a){
+  if (a.y < 1) return 0;
+  var n = a.y;
+  if (a.m > 6 || (a.m === 6 && a.d > 0)) n += 1;
+  return Math.min(n, 11);
+}
+function iasWhy(a){
+  if (a.y < 1) return 'No cumple 1 año completo: no hay IAS.';
+  var extra = (a.m > 6 || (a.m === 6 && a.d > 0));
+  var n = a.y + (extra?1:0);
+  if (n > 11) return 'Supera el tope: se pagan 11 años.';
+  if (extra) return 'La fracción (' + a.m + ' meses ' + a.d + ' días) es superior a 6 meses: suma 1 año.';
+  if (a.m === 6 && a.d === 0) return '6 meses exactos no es “superior a 6 meses”: no suma.';
+  return 'La fracción no supera 6 meses: no suma.';
+}
+/* Cuenta días hábiles desde el día siguiente al término y registra los inhábiles cruzados */
+function countVac(ter, H){
+  var days = [], inh = 0, rem = H, d = addDays(ter, 1), guard = 0;
+  while (rem > 1e-9 && guard < 800){
+    var k = iso(d), dow = d.getUTCDay(), isF = festSet.has(k);
+    if (dow === 0 || dow === 6 || isF){ inh++; days.push({date:d, type: isF ? 'fest' : 'we'}); }
+    else { var take = Math.min(1, rem); rem -= take; days.push({date:d, type: take < 1 - 1e-9 ? 'partial' : 'hab', frac: take}); }
+    d = addDays(d, 1); guard++;
+  }
+  return {inh: inh, days: days, last: days.length ? days[days.length-1].date : ter};
+}
+var CAUSALES = {
+  '159-1': {art:'Art. 159 N°1', name:'mutuo acuerdo', ias:false},
+  '159-2': {art:'Art. 159 N°2', name:'renuncia voluntaria', ias:false},
+  '159-3': {art:'Art. 159 N°3', name:'muerte del trabajador', ias:false},
+  '159-4': {art:'Art. 159 N°4', name:'vencimiento del plazo', ias:false},
+  '159-5': {art:'Art. 159 N°5', name:'conclusión de la obra o servicio', ias:false},
+  '159-6': {art:'Art. 159 N°6', name:'caso fortuito o fuerza mayor', ias:false},
+  '160':   {art:'Art. 160', name:'conducta indebida grave', ias:false},
+  '161':   {art:'Art. 161 inc. 1°', name:'necesidades de la empresa', ias:true}
+};
+function calc(s){
+  var r = {s: s, ok: true};
+  var ini = parseDate(s.inicio), ter = parseDate(s.termino);
+  if (!ini || !ter || ter < ini){ r.ok = false; r.err = 'Revisa las fechas: el término tiene que ser posterior al contrato.'; return r; }
+  r.ini = ini; r.ter = ter;
+  r.ant = datedif(ini, ter);
+  r.c = CAUSALES[s.causal] || CAUSALES['159-2'];
+  r.is161 = r.c.ias;
+  r.comProm = (s.c1 + s.c2 + s.c3) / 3;
+  r.topeGrat = 4.75 * s.imm / 12;
+  r.grat25 = 0.25 * (s.sueldo + s.bono + r.comProm + s.he + s.esp);
+  r.grat = s.grat === 'tope' ? r.topeGrat : (s.grat === '25' ? Math.min(r.grat25, r.topeGrat) : 0);
+  /* feriado */
+  r.anual = 15 + (s.mode === 'anual' ? s.prog : 0);
+  r.fm = r.anual / 12; r.fd = r.fm / 30;
+  r.prop = r.fm * r.ant.m + r.fd * r.ant.d;
+  r.progExtra = s.mode === 'saldo' ? s.prog : 0;
+  r.habiles = r.prop + s.pend + r.progExtra;
+  r.cnt = countVac(ter, r.habiles);
+  r.totalDias = r.habiles + r.cnt.inh;
+  r.baseVac = s.sueldo + s.bono + r.comProm;
+  r.valorDia = r.baseVac / 30;
+  r.vac = Math.round(r.totalDias * r.valorDia);
+  /* IAS y aviso */
+  r.aniosRegla = iasYears(r.ant);
+  r.anios = r.is161 ? r.aniosRegla : 0;
+  r.baseIAS = s.sueldo + s.bono + r.comProm + r.grat + s.col + s.mov + s.via;
+  r.topeUF = 90 * s.uf;
+  r.baseTop = Math.min(r.baseIAS, r.topeUF);
+  r.topado = r.baseIAS > r.topeUF;
+  r.ias = r.is161 ? Math.round(r.anios * r.baseTop) : 0;
+  r.avisoMonto = (r.is161 && s.aviso === 'sin') ? Math.round(r.baseTop) : 0;
+  r.afc = (r.is161 && r.ias > 0) ? Math.min(s.afc, r.ias) : 0;
+  r.prestamo = s.cuotas * s.cuota;
+  r.haberes = r.vac + r.ias + r.avisoMonto;
+  r.desc = r.afc + r.prestamo + s.otros;
+  r.total = r.haberes - r.desc;
+  return r;
+}
+
+/* ---------- ejemplos ---------- */
+var BASE = {nombre:'', inicio:'', termino:'', causal:'159-2', aviso:'con', sueldo:0, bono:0, he:0, esp:0, c1:0, c2:0, c3:0, grat:'tope', col:0, mov:0, via:0, asig:0, pend:0, prog:0, mode:'anual', afc:0, cuotas:0, cuota:0, otros:0};
+var PRESETS = {
+  victoria: {nombre:'Victoria Silva Valenzuela', inicio:'2019-05-02', termino:'2026-10-09', causal:'159-2', aviso:'sin', sueldo:650000, bono:30000, he:25260, grat:'tope', col:60000, mov:45000, asig:3258, pend:13, prog:2, afc:243002, cuotas:2, cuota:24000},
+  claudio: {nombre:'Claudio Soto Retamales', inicio:'2019-01-15', termino:'2026-08-31', causal:'161', aviso:'con', sueldo:520000, bono:200000, he:144811, grat:'tope', col:60000, mov:45000, via:110000, pend:4, prog:0, afc:1944780, cuotas:8, cuota:58500},
+  ppt: {nombre:'Ejemplo del PPT (sueldo de ejemplo)', inicio:'2022-11-07', termino:'2023-07-25', causal:'159-2', aviso:'con', sueldo:600000},
+  ex1: {nombre:'Trabajador 1 · FINIQUITADORA', inicio:'2024-10-01', termino:'2026-09-30', causal:'159-2', sueldo:1500000, bono:177000, he:82500, esp:50000, c1:800000, c2:400000, c3:200000, col:50000, mov:50000, asig:2908, pend:4, afc:2525000},
+  ex2: {nombre:'Trabajador 2 · FINIQUITADORA', inicio:'2025-12-01', termino:'2026-09-30', causal:'159-2', sueldo:2500000, bono:150000, c1:100000, c2:500000, c3:300000, col:225000, mov:225000, afc:900876},
+  ex3: {nombre:'Trabajador 3 · FINIQUITADORA (plazo fijo)', inicio:'2026-02-01', termino:'2026-09-30', causal:'159-2', sueldo:3000000, bono:200000, esp:250000, col:125000, mov:125000}
+};
+var PRESET_NOTES = {
+  ex1: 'Bonos fijos = bono especial 52.000 + bono estímulo 125.000. El “bono trabajo (solo por el mes)” es esporádico. Pendientes 4 = 15 del primer año − 11 consumidos: da lo mismo que el Excel de clases (total ganado − consumido).',
+  ex3: 'Bonos fijos = bono especial 50.000 + bono estímulo 150.000. El bono trabajo de 250.000 es esporádico.',
+  ppt: 'El PPT no da sueldo: se usa $600.000 solo para mostrar el cálculo. Lo importante es llegar a 14,75 días.'
+};
+function full(p){ var o = {}; for (var k in BASE) o[k] = BASE[k]; for (var j in p) o[j] = p[j]; return o; }
+function params(){ return {imm: parseFloat($('#p-imm').value) || 0, uf: parseFloat($('#p-uf').value) || 0}; }
+
+/* ---------- formulario ---------- */
+var F = {nombre:'c-nombre', inicio:'c-inicio', termino:'c-termino', causal:'c-causal', aviso:'c-aviso', sueldo:'h-sueldo', bono:'h-bono', he:'h-he', esp:'h-esp', c1:'h-c1', c2:'h-c2', c3:'h-c3', grat:'h-grat', col:'h-col', mov:'h-mov', via:'h-via', asig:'h-asig', pend:'v-pend', prog:'v-prog', mode:'v-mode', afc:'d-afc', cuotas:'d-cuotas', cuota:'d-cuota', otros:'d-otros'};
+var TEXT = {nombre:1, inicio:1, termino:1, causal:1, aviso:1, grat:1, mode:1};
+var currentPreset = 'victoria';
+function setForm(p){ for (var k in F){ var el = document.getElementById(F[k]); el.value = p[k] === undefined ? '' : p[k]; } }
+function getForm(){
+  var s = {};
+  for (var k in F){ var v = document.getElementById(F[k]).value; s[k] = TEXT[k] ? v : (parseFloat(v) || 0); }
+  var pr = params(); s.imm = pr.imm; s.uf = pr.uf;
+  return s;
+}
+
+/* ---------- render: documento finiquito ---------- */
+function line(lbl, amt, sub, cls){
+  return '<div class="dl ' + (cls||'') + '"><span class="lbl">' + lbl + '</span><span class="amt">' + amt + '</span>' + (sub ? '<span class="sub">' + sub + '</span>' : '') + '</div>';
+}
+function antTxt(a){ return a.y + (a.y===1?' año, ':' años, ') + a.m + (a.m===1?' mes, ':' meses, ') + a.d + (a.d===1?' día':' días'); }
+function renderDoc(r){
+  var el = $('#doc');
+  if (!r.ok){ el.innerHTML = '<p class="err">' + r.err + '</p>'; return; }
+  var s = r.s, h = '';
+  h += '<div class="doc-h"><strong>FINIQUITO</strong><span class="doc-meta">' + esc(s.nombre || 'Trabajador') + '</span></div>';
+  h += '<div class="doc-meta">' + r.c.art + ' · ' + r.c.name + (r.is161 ? (s.aviso==='sin' ? ' · sin aviso' : ' · con aviso') : '') + ' · ' + dmy(r.ini) + ' al ' + dmy(r.ter) + ' · ' + antTxt(r.ant) + '</div>';
+  h += '<div class="doc-sec">Haberes</div>';
+  h += line('Feriado legal', clp(r.vac), nf(r.totalDias,4) + ' días × ' + nf(r.valorDia,2) + ' (' + nf(r.habiles,4) + ' hábiles + ' + r.cnt.inh + ' inhábiles)');
+  if (r.is161){
+    if (r.anios > 0) h += line('Indemnización por años de servicio', clp(r.ias), r.anios + ' × ' + clp(r.baseTop) + (r.topado ? ' (base topada en 90 UF)' : ''));
+    else h += line('Indemnización por años de servicio', 'No corresponde', 'No cumple 1 año de servicio', 'na');
+    if (s.aviso === 'sin') h += line('Indemnización sustitutiva del aviso previo', clp(r.avisoMonto), '1 × ' + clp(r.baseTop));
+    else h += line('Indemnización sustitutiva del aviso previo', 'No corresponde', 'Hubo aviso de 30 días', 'na');
+  } else {
+    h += line('Indemnización por años de servicio', 'No corresponde', 'Solo procede con art. 161', 'na');
+    h += line('Indemnización sustitutiva del aviso previo', 'No corresponde', 'Solo procede con art. 161 sin aviso', 'na');
+  }
+  h += '<div class="doc-sec">Descuentos</div>';
+  if (r.is161 && r.ias > 0) h += line('Aporte empleador seguro de cesantía', '−' + clp(r.afc), 'Art. 13 Ley 19.728, se imputa a la IAS', 'neg');
+  else h += line('Aporte empleador seguro de cesantía', 'No corresponde', s.afc > 0 ? 'Hay aporte de ' + clp(s.afc) + ', pero sin IAS no se descuenta' : 'Solo se rebaja de la IAS por art. 161', 'na');
+  if (r.prestamo > 0) h += line('Préstamo empresa', '−' + clp(r.prestamo), s.cuotas + ' cuotas × ' + clp(s.cuota), 'neg');
+  if (s.otros > 0) h += line('Otros descuentos', '−' + clp(s.otros), '', 'neg');
+  h += '<div class="doc-total"><span>Total a pagar</span><span class="amt">' + clp(r.total) + '</span></div>';
+  if (r.total < 0) h += '<p class="err small">Los descuentos superan los haberes: revisa los montos.</p>';
+  if (PRESET_NOTES[currentPreset]) h += '<p class="small muted">' + PRESET_NOTES[currentPreset] + '</p>';
+  el.innerHTML = h;
+}
+
+/* ---------- render: desarrollo ---------- */
+function inhList(cnt){
+  var xs = cnt.days.filter(function(x){ return x.type==='we' || x.type==='fest'; }).map(function(x){
+    return DIAS[x.date.getUTCDay()] + ' ' + x.date.getUTCDate() + '/' + (x.date.getUTCMonth()+1) + (x.type==='fest' ? ' (festivo)' : '');
+  });
+  return xs.length ? xs.join(', ') : 'ninguno';
+}
+function stepsHTML(r, opts){
+  opts = opts || {};
+  if (!r.ok) return '<li><div class="err">' + r.err + '</div></li>';
+  var s = r.s, L = [];
+  function li(t, c){ L.push('<li><div>' + t + (c ? '<span class="calc">' + c + '</span>' : '') + '</div></li>'); }
+  if (!opts.onlyVac){
+    var paga = 'feriado' + (r.is161 ? (r.aniosRegla > 0 ? ' + IAS' : '') + (s.aviso==='sin' ? ' + mes de aviso' : '') : '');
+    li('<b>Causal:</b> ' + r.c.art + ', ' + r.c.name + (r.is161 ? (s.aviso==='sin' ? ', sin aviso' : ', con aviso') : '') + '. Corresponde: ' + paga + '.');
+  }
+  li('<b>Antigüedad</b> (SIFECHA del contrato al término): ' + antTxt(r.ant) + '.', dmy(r.ini) + ' → ' + dmy(r.ter));
+  li('<b>Factor de feriado:</b> ' + r.anual + ' días al año' + (s.prog && s.mode==='anual' ? ' (15 + ' + s.prog + ' progresivos)' : '') + '.', r.anual + ' ÷ 12 = ' + nf(r.fm,4) + ' por mes · ' + nf(r.fm,4) + ' ÷ 30 = ' + nf(r.fd,6) + ' por día');
+  li('<b>Proporcional</b> desde la última anualidad (' + r.ant.m + ' meses y ' + r.ant.d + ' días).', nf(r.fm,4) + ' × ' + r.ant.m + ' + ' + nf(r.fd,6) + ' × ' + r.ant.d + ' = ' + nf(r.prop,4) + ' días hábiles');
+  if (s.pend || r.progExtra) li('<b>Días hábiles a pagar:</b> proporcional + pendientes' + (r.progExtra ? ' + progresivos' : '') + '.', nf(r.prop,4) + ' + ' + nf(s.pend, s.pend%1?2:0) + (r.progExtra ? ' + ' + r.progExtra : '') + ' = ' + nf(r.habiles,4) + ' días hábiles');
+  li('<b>Inhábiles:</b> contando desde el ' + dmy(addDays(r.ter,1)) + ', el último día hábil cae el ' + dmy(r.cnt.last) + '. Se cruzan ' + r.cnt.inh + ' inhábiles: ' + inhList(r.cnt) + '.', nf(r.habiles,4) + ' + ' + r.cnt.inh + ' = ' + nf(r.totalDias,4) + ' días a pagar');
+  var bv = 'Sueldo ' + clp(s.sueldo) + (s.bono ? ' + bonos fijos ' + clp(s.bono) : '') + (r.comProm ? ' + promedio comisiones ' + clp(r.comProm) : '');
+  li('<b>Base del feriado</b> (sin gratificación, horas extras ni no imponibles).', bv + ' = ' + clp(r.baseVac) + ' · ÷ 30 = ' + nf(r.valorDia,2) + ' por día');
+  li('<b>Feriado a pagar.</b>', nf(r.totalDias,4) + ' × ' + nf(r.valorDia,2) + ' = <b>' + clp(r.vac) + '</b>');
+  if (opts.onlyVac) return L.join('');
+  if (r.is161){
+    li('<b>Años de IAS:</b> ' + iasWhy(r.ant), antTxt(r.ant) + ' → ' + r.aniosRegla + ' años');
+    if (r.aniosRegla > 0 || s.aviso === 'sin'){
+      var partes = ['sueldo ' + clp(s.sueldo)];
+      if (s.bono) partes.push('bonos fijos ' + clp(s.bono));
+      if (r.comProm) partes.push('prom. comisiones ' + clp(r.comProm));
+      if (r.grat) partes.push('gratificación ' + nf(r.grat,2) + (s.grat==='tope' ? ' (4,75 × ' + clp(s.imm) + ' ÷ 12)' : ''));
+      if (s.col) partes.push('colación ' + clp(s.col));
+      if (s.mov) partes.push('movilización ' + clp(s.mov));
+      if (s.via) partes.push('viáticos ' + clp(s.via));
+      li('<b>Base IAS / aviso</b> (sin horas extras ni asignación familiar).', partes.join(' + ') + ' = ' + clp(r.baseIAS));
+      li('<b>Tope 90 UF:</b> ' + (r.topado ? 'la base lo supera, se usa el tope.' : 'la base no lo supera, se usa completa.'), '90 × ' + nf(s.uf,2) + ' = ' + clp(r.topeUF) + ' → base = ' + clp(r.baseTop));
+    }
+    if (r.aniosRegla > 0) li('<b>IAS.</b>', r.anios + ' × ' + clp(r.baseTop) + ' = <b>' + clp(r.ias) + '</b>');
+    li('<b>Mes de aviso:</b> ' + (s.aviso === 'sin' ? 'no hubo aviso, se paga una base mensual.' : 'hubo aviso de 30 días, no corresponde.'), s.aviso === 'sin' ? '1 × ' + clp(r.baseTop) + ' = <b>' + clp(r.avisoMonto) + '</b>' : '');
+  } else {
+    li('<b>IAS y mes de aviso:</b> no corresponden, la causal no es art. 161.');
+  }
+  var dtx = [];
+  if (r.afc) dtx.push('AFC ' + clp(r.afc));
+  else if (s.afc) dtx.push('AFC no se descuenta (sin IAS)');
+  if (r.prestamo) dtx.push('préstamo ' + s.cuotas + ' × ' + clp(s.cuota) + ' = ' + clp(r.prestamo));
+  if (s.otros) dtx.push('otros ' + clp(s.otros));
+  li('<b>Descuentos.</b>', dtx.length ? dtx.join(' · ') + ' → total ' + clp(r.desc) : 'No hay');
+  li('<b>Total finiquito.</b>', clp(r.vac) + (r.ias ? ' + ' + clp(r.ias) : '') + (r.avisoMonto ? ' + ' + clp(r.avisoMonto) : '') + (r.desc ? ' − ' + clp(r.desc) : '') + ' = <b>' + clp(r.total) + '</b>');
+  return L.join('');
+}
+
+/* ---------- render: calendario ---------- */
+var LEGEND = '<span><i style="background:var(--accent-soft)"></i>Día hábil contado</span><span><i style="background:linear-gradient(90deg,var(--accent-soft) 50%,transparent 50%);box-shadow:inset 0 0 0 1px var(--accent)"></i>Fracción de día</span><span><i style="background:var(--we)"></i>Sábado o domingo</span><span><i style="background:var(--warn-soft)"></i>Festivo</span><span><i style="box-shadow:inset 0 0 0 2px var(--bad)"></i>Día de término</span>';
+function renderCal(el, r){
+  if (!r.ok){ el.innerHTML = ''; return; }
+  var map = {}; r.cnt.days.forEach(function(x){ map[iso(x.date)] = x; });
+  var y = r.ter.getUTCFullYear(), m = r.ter.getUTCMonth();
+  var ly = r.cnt.last.getUTCFullYear(), lm = r.cnt.last.getUTCMonth();
+  var tk = iso(r.ter), html = '', guard = 0;
+  while ((y < ly || (y === ly && m <= lm)) && guard < 24){
+    html += '<div class="cal-m"><div class="cal-t">' + MESES[m] + ' ' + y + '</div><div class="cal-g">';
+    ['L','M','M','J','V','S','D'].forEach(function(d){ html += '<span class="cal-h">' + d + '</span>'; });
+    var off = (new Date(Date.UTC(y, m, 1)).getUTCDay() + 6) % 7;
+    for (var i = 0; i < off; i++) html += '<span></span>';
+    for (var d = 1; d <= dim(y, m); d++){
+      var k = iso(new Date(Date.UTC(y, m, d))), x = map[k], cls = '', t = '';
+      if (k === tk){ cls = 'is-term'; t = 'Término del contrato'; }
+      else if (x){ cls = 'is-' + x.type; t = x.type==='hab' ? 'Hábil' : x.type==='partial' ? 'Fracción ' + nf(x.frac,4) : x.type==='fest' ? 'Festivo (inhábil)' : 'Fin de semana (inhábil)'; }
+      else if (festSet.has(k)) { cls = 'is-festout'; t = 'Festivo fuera del conteo'; }
+      html += '<span class="' + cls + '"' + (t ? ' title="' + t + '"' : '') + '>' + d + '</span>';
+    }
+    html += '</div></div>';
+    m++; if (m > 11){ m = 0; y++; } guard++;
+  }
+  el.innerHTML = html;
+}
+
+/* ---------- calculadora ---------- */
+function update(){
+  var r = calc(getForm());
+  renderDoc(r);
+  $('#steps').innerHTML = stepsHTML(r);
+  renderCal($('#cal'), r);
+}
+function loadPreset(key){
+  currentPreset = key;
+  var p = full(PRESETS[key]);
+  if (key === 'victoria'){ p.inicio = $('#cv-i').value || p.inicio; p.termino = $('#cv-t').value || p.termino; }
+  if (key === 'claudio'){ p.inicio = $('#cc-i').value || p.inicio; p.termino = $('#cc-t').value || p.termino; }
+  setForm(p);
+  $('#preset').value = key;
+  update();
+}
+
+/* ---------- caso ---------- */
+function renderCase(){
+  var pr = params();
+  var v = full(PRESETS.victoria); v.inicio = $('#cv-i').value; v.termino = $('#cv-t').value; v.imm = pr.imm; v.uf = pr.uf;
+  var c = full(PRESETS.claudio); c.inicio = $('#cc-i').value; c.termino = $('#cc-t').value; c.imm = pr.imm; c.uf = pr.uf;
+  var a = calc(v), b = calc(c), tb = $('#case-tb');
+  if (!a.ok || !b.ok){ tb.innerHTML = '<tr><td colspan="3" class="err">' + (a.err || b.err) + '</td></tr>'; return; }
+  function row(lbl, x, y, strong){ return '<tr' + (strong ? ' style="font-weight:700"' : '') + '><td>' + lbl + '</td><td class="r">' + x + '</td><td class="r">' + y + '</td></tr>'; }
+  function iasCell(r){ return r.is161 ? clp(r.ias) : '—'; }
+  var h = '';
+  h += row('Antigüedad', a.ant.y + 'a ' + a.ant.m + 'm ' + a.ant.d + 'd', b.ant.y + 'a ' + b.ant.m + 'm ' + b.ant.d + 'd');
+  h += row('Factor mensual', nf(a.fm,4), nf(b.fm,4));
+  h += row('Proporcional (hábiles)', nf(a.prop,4), nf(b.prop,4));
+  h += row('+ Pendientes', a.s.pend, b.s.pend);
+  h += row('= Días hábiles', nf(a.habiles,4), nf(b.habiles,4));
+  h += row('+ Inhábiles', a.cnt.inh, b.cnt.inh);
+  h += row('= Días a pagar', nf(a.totalDias,4), nf(b.totalDias,4));
+  h += row('Base feriado', clp(a.baseVac), clp(b.baseVac));
+  h += row('Valor día', nf(a.valorDia,2), nf(b.valorDia,2));
+  h += row('Feriado legal', clp(a.vac), clp(b.vac), true);
+  h += row('Años IAS', a.is161 ? a.anios : '—', b.is161 ? b.anios : '—');
+  h += row('Base IAS (tope 90 UF ' + clp(b.topeUF) + ')', a.is161 ? clp(a.baseTop) : '—', b.is161 ? clp(b.baseTop) : '—');
+  h += row('IAS', iasCell(a), iasCell(b), true);
+  h += row('Mes de aviso', a.avisoMonto ? clp(a.avisoMonto) : '—', b.avisoMonto ? clp(b.avisoMonto) : '—', true);
+  h += row('− Aporte AFC', a.afc ? '−' + clp(a.afc) : '—', b.afc ? '−' + clp(b.afc) : '—');
+  h += row('− Préstamo', '−' + clp(a.prestamo), '−' + clp(b.prestamo));
+  h += row('TOTAL FINIQUITO', clp(a.total), clp(b.total), true);
+  tb.innerHTML = h;
+}
+
+/* ---------- PPT ---------- */
+function renderPPT(){
+  var p = full(PRESETS.ppt); p.imm = 553553; p.uf = 41057.2;
+  var r = calc(p);
+  $('#ppt-steps').innerHTML = stepsHTML(r, {onlyVac:true}).replace(/<li><div><b>Base del feriado[\s\S]*$/, '') + '<li><div><b>Resultado:</b> 10,75 hábiles + 4 inhábiles (29 y 30 de julio, 5 y 6 de agosto) = <mark>14,75 días</mark> a pagar, igual que el PPT.</div></li>';
+  renderCal($('#ppt-cal'), r);
+}
+
+/* ---------- causales interactivas ---------- */
+var CAU_OPTS = [
+  {k:'159-1', t:'159 N°1 Mutuo acuerdo', d:'Ambas partes deciden terminar.'},
+  {k:'159-2', t:'159 N°2 Renuncia', d:'El trabajador renuncia. Debe avisar con 30 días, pero si no avisa no se le descuenta nada.'},
+  {k:'159-3', t:'159 N°3 Muerte', d:'El feriado se paga a los herederos.'},
+  {k:'159-4', t:'159 N°4 Vencimiento del plazo', d:'Termina un contrato a plazo fijo.'},
+  {k:'159-5', t:'159 N°5 Fin de obra', d:'Termina la obra o servicio que dio origen al contrato.'},
+  {k:'159-6', t:'159 N°6 Caso fortuito', d:'Fuerza mayor imprevisible e irresistible.'},
+  {k:'160', t:'160 Conducta grave', d:'Falta de probidad, acoso sexual o laboral, vías de hecho, injurias, ausencias injustificadas, abandono, imprudencias, perjuicio material o incumplimiento grave. Debe estar comprobada.'},
+  {k:'161c', t:'161 con aviso', d:'Necesidades de la empresa (racionalización, baja productividad, cambios del mercado) avisando por escrito con 30 días.'},
+  {k:'161s', t:'161 sin aviso', d:'Necesidades de la empresa sin los 30 días de aviso: se suma el mes de aviso.'}
+];
+function renderCau(k){
+  var o = CAU_OPTS.filter(function(x){ return x.k === k; })[0];
+  var is161 = k.indexOf('161') === 0, sin = k === '161s';
+  function pill(ok, txt, maybe){ return '<span class="pill ' + (maybe ? 'maybe' : ok ? 'yes' : 'no') + '">' + (ok ? '✓ ' : '✕ ') + txt + '</span>'; }
+  var h = '<h3 style="margin-bottom:6px">Art. ' + o.t + '</h3><p class="muted" style="margin-bottom:12px">' + o.d + '</p><div class="pills">';
+  h += pill(true, 'Feriado');
+  h += is161 ? pill(true, 'IAS (si tiene 1 año o más)', false) : pill(false, 'IAS');
+  h += pill(sin, 'Mes de aviso');
+  h += pill(is161, 'Rebaja aporte AFC');
+  h += '</div>';
+  $('#cau-out').innerHTML = h;
+  Array.prototype.forEach.call(document.querySelectorAll('#cau-seg button'), function(b){ b.setAttribute('aria-pressed', b.dataset.k === k ? 'true' : 'false'); });
+}
+
+/* ---------- clasificador ---------- */
+var CLASIF = [
+  {n:'Sueldo base', v:true, i:true, why:'Es el sueldo: entra en las dos bases.'},
+  {n:'Bono fijo y permanente', v:true, i:true, why:'Se paga todos los meses por el mismo monto, se trata como sueldo.'},
+  {n:'Comisiones (promedio 3 meses)', v:true, i:true, why:'Remuneración variable: se usa el promedio de los últimos 3 meses en ambas.'},
+  {n:'Horas extras', v:false, i:false, why:'Excluidas: el art. 172 las saca de la IAS y el curso también las saca del feriado.'},
+  {n:'Gratificación mensual', v:false, i:true, why:'No es sueldo (art. 42 e), por eso no va en feriado. Pagada mes a mes sí va en IAS y aviso.'},
+  {n:'Bono esporádico o aguinaldo', v:false, i:false, why:'Lo que se paga una vez o de forma esporádica no entra en ninguna.'},
+  {n:'Colación mensual', v:false, i:true, why:'No imponible: fuera del feriado. Pagada todos los meses entra en IAS (dictamen DT 6305/418).'},
+  {n:'Movilización mensual', v:false, i:true, why:'Mismo criterio que la colación.'},
+  {n:'Viáticos mensuales', v:false, i:true, why:'Fuera del feriado. Si se pagan todos los meses, el material del curso los incluye en la IAS.'},
+  {n:'Asignación familiar', v:false, i:false, why:'Excluida de todas las bases.'}
+];
+var clsAns = {};
+function renderCls(){
+  var h = '';
+  CLASIF.forEach(function(c, idx){
+    h += '<div class="cls-row"><span>' + c.n + '</span>';
+    ['v','i'].forEach(function(b){
+      h += '<div class="yn" id="yn-' + idx + b + '" role="group" aria-label="' + c.n + ' en ' + (b==='v'?'feriado':'IAS') + '">';
+      h += '<button type="button" data-i="' + idx + '" data-b="' + b + '" data-val="1" aria-pressed="false">Sí</button>';
+      h += '<button type="button" data-i="' + idx + '" data-b="' + b + '" data-val="0" aria-pressed="false">No</button></div>';
+    });
+    h += '<span class="why" id="why-' + idx + '" hidden></span></div>';
+  });
+  $('#cls').innerHTML = h;
+  clsAns = {};
+  $('#cls-score').textContent = '';
+}
+
+/* ---------- excel ---------- */
+var XL_IN = [
+  ['B2','Fecha de contrato'],['B3','Fecha de término'],['B4','Días pendientes'],['B5','Días progresivos'],
+  ['B6','Sueldo base'],['B7','Bono fijo y permanente'],['B8','Colación'],['B9','Movilización'],['B10','Viáticos'],
+  ['B11','Ingreso mínimo (553553)'],['B12','Valor UF'],['B13','Aporte empleador AFC'],['B14','N° cuotas préstamo'],['B15','Valor cuota'],['B16','Causal (159, 160 o 161)'],['B17','Aviso ("Con aviso" / "Sin aviso")']
+];
+var XL_F = [
+  ['B19','Años','=SIFECHA(B2;B3;"Y")',''],
+  ['B20','Meses','=SIFECHA(B2;B3;"YM")','Meses desde la última anualidad'],
+  ['B21','Días','=SIFECHA(B2;B3;"MD")',''],
+  ['B23','Días por mes','=(15+B5)/12','1,25 sin progresivos'],
+  ['B24','Días por día','=B23/30',''],
+  ['B25','Proporcional','=B23*B20+B24*B21',''],
+  ['B26','Días hábiles','=B25+B4','Proporcional + pendientes'],
+  ['B27','Inhábiles','=DIA.LAB(B3;REDONDEAR.MAS(B26;0);Feriados)-B3-REDONDEAR.MAS(B26;0)','Sábados, domingos y festivos del conteo'],
+  ['B28','Días a pagar','=B26+B27',''],
+  ['B29','Base feriado','=B6+B7','Sin gratificación, HE ni no imponibles'],
+  ['B30','Valor día','=B29/30',''],
+  ['B31','Feriado $','=REDONDEAR(B28*B30;0)',''],
+  ['B33','Años IAS','=SI(B19>11;11;SI(Y(B19<11;B20>5;B21>0;B19>0);B19+1;SI(Y(B20>6;B19<11;B19>0);B19+1;B19)))','Fórmula del Excel de clases'],
+  ['B34','Gratificación','=4,75*B11/12','Tope legal mensual'],
+  ['B35','Base IAS','=B6+B7+B34+B8+B9+B10','Sin HE ni asignación familiar'],
+  ['B36','Base con tope','=MIN(B35;90*B12)',''],
+  ['B37','IAS $','=SI(B16=161;REDONDEAR(B33*B36;0);0)',''],
+  ['B38','Mes de aviso','=SI(Y(B16=161;B17="Sin aviso");REDONDEAR(B36;0);0)',''],
+  ['B39','Rebaja AFC','=SI(B37>0;MIN(B13;B37);0)','Solo si hay IAS'],
+  ['B40','Préstamo','=B14*B15',''],
+  ['B41','TOTAL','=B31+B37+B38-B39-B40','']
+];
+function renderXL(){
+  $('#xl-in').innerHTML = XL_IN.map(function(x){ return '<div class="xl-row"><span class="cell">' + x[0] + '</span><span>' + x[1] + '</span></div>'; }).join('');
+  $('#xl-f').innerHTML = XL_F.map(function(x){
+    return '<div class="xl-row"><span class="cell">' + x[0] + '</span><span><b>' + x[1] + '</b><code>' + esc(x[2]) + '</code>' + (x[3] ? '<small>' + x[3] + '</small>' : '') + '</span></div>';
+  }).join('');
+}
+
+/* ---------- checklist ---------- */
+var CK = [
+  'Identifico la causal con su artículo y sé qué indemnizaciones paga.',
+  'Calculo la antigüedad con SIFECHA en años, meses y días.',
+  'Días hábiles = pendientes + proporcional, con los progresivos incluidos.',
+  'Cuento los inhábiles desde el día siguiente al término, con feriados.',
+  'Base del feriado sin gratificación, horas extras ni no imponibles; valor día = base ÷ 30.',
+  'Años de IAS con la regla de la fracción superior a 6 meses y el tope de 11.',
+  'Base IAS con gratificación, colación, movilización y viáticos; sin horas extras ni asignación familiar.',
+  'Comparo la base con 90 UF del último día del mes anterior al pago.',
+  'Pago mes de aviso solo con art. 161 sin aviso.',
+  'Descuento el aporte AFC solo de la IAS y el préstamo como cuotas × valor.',
+  'Total = haberes − descuentos, en pesos sin decimales.',
+  'Mi Excel tiene datos etiquetados y fórmulas a la vista, sin resultados tecleados.'
+];
+function renderCK(){
+  var saved = store('finiq-ck') || {};
+  $('#ck').innerHTML = CK.map(function(t, i){ return '<label><input type="checkbox" id="ck-' + i + '"' + (saved[i] ? ' checked' : '') + '><span>' + t + '</span></label>'; }).join('');
+  ckProgress();
+}
+function ckProgress(){
+  var n = 0, saved = {};
+  CK.forEach(function(t, i){ var c = document.getElementById('ck-' + i).checked; if (c){ n++; saved[i] = 1; } });
+  var pct = Math.round(n / CK.length * 100);
+  $('#ck-pct').textContent = pct + '%';
+  $('#ck-bar').style.width = pct + '%';
+  store('finiq-ck', saved);
+}
+
+/* ---------- quiz ---------- */
+var QZ = [
+  {q:'Victoria renuncia (art. 159 N°2). ¿Qué le corresponde?', o:['Solo feriado (pendiente + proporcional)','Feriado + IAS','Feriado + IAS + mes de aviso','Nada, porque renunció'], w:'La renuncia solo da derecho al feriado no usado. IAS y mes de aviso son del art. 161.'},
+  {q:'Claudio es despedido por art. 161 con aviso de 30 días. ¿Qué NO le corresponde?', o:['Mes de aviso','Feriado','IAS','Rebaja del aporte AFC'], w:'Si el empleador avisó con 30 días, no paga la indemnización sustitutiva del aviso.'},
+  {q:'Antigüedad de 4 años, 6 meses y 0 días, despido por art. 161. ¿Cuántos años de IAS?', o:['4','5','4,5','6'], w:'La fracción tiene que ser superior a 6 meses. Con 6 meses y 1 día serían 5.'},
+  {q:'11 meses y 29 días, despido por art. 161 sin aviso. ¿Qué recibe?', o:['Feriado + mes de aviso','Feriado + 1 año de IAS + mes de aviso','Solo feriado','Feriado + IAS proporcional'], w:'Para la IAS se exige 1 año completo. El mes de aviso no exige antigüedad.'},
+  {q:'Con 15 días de feriado anual, ¿cuántos días hábiles se ganan por mes?', o:['1,25','1,5','0,0417','1'], w:'15 ÷ 12 = 1,25 por mes, y 1,25 ÷ 30 = 0,041667 por día.'},
+  {q:'Victoria tiene 2 días progresivos. ¿Cuál es su factor mensual según el PPT?', o:['17 ÷ 12 = 1,4167','15 ÷ 12 = 1,25','2 ÷ 12 = 0,1667','17 ÷ 30 = 0,5667'], w:'Se divide el feriado total, incluidos los progresivos, por 12.'},
+  {q:'¿La gratificación mensual entra en la base del feriado?', o:['No','Sí','Solo si es convencional','Solo si no llega al tope'], w:'La gratificación no es sueldo. En el feriado no entra; en IAS y aviso sí, si se paga mes a mes.'},
+  {q:'¿Cuál de estos haberes NO entra en la base de la IAS?', o:['Horas extras','Gratificación mensual','Colación mensual','Bono fijo'], w:'El art. 172 excluye horas extras, asignación familiar y beneficios esporádicos.'},
+  {q:'¿Desde qué día se cuentan los días de feriado a indemnizar?', o:['Desde el día siguiente al término','Desde el mismo día del término','Desde el lunes siguiente','Desde la firma del finiquito'], w:'Se parte el día siguiente y se suman los sábados, domingos y festivos que se crucen.'},
+  {q:'El aporte del empleador al seguro de cesantía se descuenta…', o:['Solo de la IAS, cuando la causal es art. 161','De cualquier finiquito','Del feriado proporcional','Nunca'], w:'Art. 13 Ley 19.728. En la renuncia de Victoria ese dato no se usa.'},
+  {q:'¿Cuál es el tope de la base mensual para IAS y aviso?', o:['90 UF del último día del mes anterior al pago','90 UF del día del despido','4,75 ingresos mínimos','No tiene tope'], w:'Art. 172: no se considera una remuneración mensual superior a 90 UF.'},
+  {q:'¿Cuántos años de IAS como máximo (contratos desde agosto de 1981)?', o:['11 años (330 días)','10 años','12 años','Sin máximo'], w:'El art. 163 limita la IAS a 330 días de remuneración.'},
+  {q:'Plazo para otorgar y pagar el finiquito (art. 177):', o:['10 días hábiles desde la separación','30 días corridos','5 días hábiles','Al mes siguiente'], w:'Desde la separación del trabajador.'},
+  {q:'Victoria renunció “sin aviso”. ¿Qué efecto tiene en su finiquito?', o:['Ninguno: no se paga ni se descuenta nada por eso','Se le descuenta un mes de sueldo','Pierde el feriado','Se le descuentan 30 días de feriado'], w:'La ley no autoriza al empleador a descontar por falta de aviso en la renuncia.'},
+  {q:'En el ejemplo del PPT (10,75 hábiles desde el 26-07-2023), ¿cuántos días se pagan?', o:['14,75','10,75','12,75','15'], w:'Se cruzan 4 inhábiles: 29 y 30 de julio, 5 y 6 de agosto.'}
+];
+var qzState = [];
+function shuffle(a){ var b = a.slice(); for (var i = b.length-1; i > 0; i--){ var j = Math.floor(Math.random()*(i+1)); var t = b[i]; b[i] = b[j]; b[j] = t; } return b; }
+function renderQZ(){
+  qzState = QZ.map(function(q){ var idx = shuffle(q.o.map(function(_, i){ return i; })); return {order: idx, done: false, right: false}; });
+  $('#qz').innerHTML = QZ.map(function(q, n){
+    var st = qzState[n];
+    return '<div class="sheet q" id="q-' + n + '"><span class="q-n">Pregunta ' + (n+1) + '</span><p class="q-p">' + q.q + '</p><div class="q-opts">' +
+      st.order.map(function(oi){ return '<button type="button" data-q="' + n + '" data-o="' + oi + '">' + q.o[oi] + '</button>'; }).join('') +
+      '</div><p class="q-why" id="qw-' + n + '" hidden></p></div>';
+  }).join('');
+  $('#qz-total').textContent = QZ.length;
+  $('#qz-score').textContent = '0';
+}
+
+/* ---------- eventos ---------- */
+function init(){
+  /* causales */
+  $('#cau-seg').innerHTML = CAU_OPTS.map(function(o){ return '<button type="button" data-k="' + o.k + '" aria-pressed="false">' + o.t + '</button>'; }).join('');
+  $('#cau-seg').addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) renderCau(b.dataset.k); });
+  renderCau('159-2');
+
+  /* probador IAS */
+  function tUpd(){
+    var a = {y: parseInt($('#t-y').value,10)||0, m: parseInt($('#t-m').value,10)||0, d: parseInt($('#t-d').value,10)||0};
+    $('#t-out').innerHTML = '<b class="num">' + iasYears(a) + ' años de IAS.</b> ' + iasWhy(a);
+  }
+  ['#t-y','#t-m','#t-d'].forEach(function(s){ $(s).addEventListener('input', tUpd); });
+  tUpd();
+  var ex = [[0,11,29],[1,0,0],[2,6,0],[2,6,1],[5,7,10],[10,8,0],[14,2,0]];
+  $('#ias-ex').innerHTML = ex.map(function(e){ var a = {y:e[0], m:e[1], d:e[2]}; return '<tr><td>' + antTxt(a) + '</td><td class="r">' + iasYears(a) + '</td><td>' + iasWhy(a) + '</td></tr>'; }).join('');
+
+  /* leyendas */
+  $('#legend-1').innerHTML = LEGEND; $('#legend-2').innerHTML = LEGEND;
+
+  /* feriados editables */
+  $('#v-fest').value = FEST_DEFAULT.join('\n');
+  $('#v-fest').addEventListener('input', function(){
+    var xs = this.value.split(/\s+/).filter(function(x){ return /^\d{4}-\d{2}-\d{2}$/.test(x); });
+    festSet = new Set(xs); update(); renderCase();
+  });
+
+  /* calculadora */
+  $('#preset').addEventListener('change', function(){ loadPreset(this.value); });
+  Object.keys(F).forEach(function(k){
+    var el = document.getElementById(F[k]);
+    el.addEventListener(el.tagName === 'SELECT' ? 'change' : 'input', update);
+  });
+  ['#p-imm','#p-uf'].forEach(function(s){ $(s).addEventListener('input', function(){ update(); renderCase(); }); });
+  $('#imm-500').addEventListener('click', function(){ $('#p-imm').value = 500000; update(); renderCase(); });
+  $('#imm-now').addEventListener('click', function(){ $('#p-imm').value = 553553; update(); renderCase(); });
+  loadPreset('victoria');
+
+  /* caso */
+  ['#cv-i','#cv-t','#cc-i','#cc-t'].forEach(function(s){ $(s).addEventListener('input', function(){ renderCase(); if (currentPreset === 'victoria' || currentPreset === 'claudio') loadPreset(currentPreset); }); });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-open]'), function(b){
+    b.addEventListener('click', function(){ loadPreset(b.dataset.open); document.getElementById('calculadora').scrollIntoView(); });
+  });
+  renderCase();
+
+  /* ppt */
+  renderPPT();
+
+  /* clasificador */
+  renderCls();
+  $('#cls').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    var key = b.dataset.i + b.dataset.b; clsAns[key] = b.dataset.val === '1';
+    var g = document.getElementById('yn-' + key); g.classList.remove('right','wrong');
+    Array.prototype.forEach.call(g.querySelectorAll('button'), function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+  });
+  $('#cls-check').addEventListener('click', function(){
+    var ok = 0, tot = CLASIF.length * 2;
+    CLASIF.forEach(function(c, i){
+      ['v','i'].forEach(function(bk){
+        var g = document.getElementById('yn-' + i + bk), ans = clsAns[i + bk];
+        g.classList.remove('right','wrong');
+        if (ans === undefined){ g.classList.add('wrong'); return; }
+        if (ans === c[bk]){ ok++; g.classList.add('right'); } else g.classList.add('wrong');
+      });
+      var w = document.getElementById('why-' + i);
+      w.innerHTML = '<b>Feriado: ' + (c.v ? 'sí' : 'no') + ' · IAS: ' + (c.i ? 'sí' : 'no') + '.</b> ' + c.why; w.hidden = false;
+    });
+    $('#cls-score').textContent = ok + ' de ' + tot + ' correctas';
+  });
+  $('#cls-reset').addEventListener('click', renderCls);
+
+  /* excel */
+  renderXL();
+
+  /* checklist */
+  renderCK();
+  $('#ck').addEventListener('change', ckProgress);
+
+  /* quiz */
+  renderQZ();
+  $('#qz').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    var n = +b.dataset.q, oi = +b.dataset.o, st = qzState[n]; if (st.done) return;
+    st.done = true; st.right = oi === 0;
+    var box = document.getElementById('q-' + n);
+    Array.prototype.forEach.call(box.querySelectorAll('button'), function(x){
+      x.disabled = true;
+      if (+x.dataset.o === 0) x.classList.add('right');
+      else if (x === b) x.classList.add('wrong');
+    });
+    var w = document.getElementById('qw-' + n); w.innerHTML = (st.right ? '<b class="yes-t">Correcto.</b> ' : '<b class="no-t">Incorrecto.</b> ') + QZ[n].w; w.hidden = false;
+    $('#qz-score').textContent = qzState.filter(function(x){ return x.right; }).length;
+  });
+  $('#qz-reset').addEventListener('click', renderQZ);
+
+  /* nav activa */
+  if ('IntersectionObserver' in window){
+    var links = {}; Array.prototype.forEach.call(document.querySelectorAll('#nav a'), function(a){ links[a.getAttribute('href').slice(1)] = a; });
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if (en.isIntersecting){
+          Object.keys(links).forEach(function(k){ links[k].classList.toggle('on', k === en.target.id); });
+          var a = links[en.target.id]; if (a && a.scrollIntoView){ try{ a.parentNode.scrollTo({left: a.offsetLeft - 16, behavior:'smooth'}); }catch(err){} }
+        }
+      });
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    Array.prototype.forEach.call(document.querySelectorAll('main section[id]'), function(s){ io.observe(s); });
+  }
+  var h = (location.hash || '').slice(1);
+  if (h && document.getElementById(h)) document.getElementById(h).scrollIntoView();
+}
+init();
+
+/* expuesto para pruebas */
+window.__finiq = {calc: calc, full: full, PRESETS: PRESETS, datedif: datedif, iasYears: iasYears};
+})();
+</script>
+</body>
+</html>
